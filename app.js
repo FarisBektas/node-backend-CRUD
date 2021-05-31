@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const app = express();
-const databaseString = "mongodb://localhost:27017/users";
+const databaseString = process.env.DB_CONNECTION_STRING;
 
 mongoose.connect(databaseString,{
     useNewUrlParser: true,
