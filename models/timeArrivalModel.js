@@ -2,11 +2,13 @@ const mongoose = require('mongoose')
 
 const timeArrivalSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    time:{
+    name:{
         type:String,
         required: true
-    },
-    user:{type: mongoose.Schema.Types.ObjectId,ref:'users'}
+    },time:{
+        type:String,
+        required: true
+    }
 });
 
 const timeArrivalModel= mongoose.model('arrivals',timeArrivalSchema);

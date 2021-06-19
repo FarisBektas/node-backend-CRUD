@@ -3,7 +3,7 @@ const Arrival = require('../models/timeArrivalModel');
 
 module.exports.getArrivals = async (req,res,next) =>{
     try{
-      const arrivals = await Arrival.find({}).populate('user').exec();
+      const arrivals = await Arrival.find({}).exec();
       res.status(200).json(arrivals);
     } catch (err){
       next(err);
@@ -11,15 +11,17 @@ module.exports.getArrivals = async (req,res,next) =>{
 }
 
 module.exports.createArrival = async (req,res,next) =>{
-    if(!req.body.time || !req.body.user){
+    if(!req.body.time || !req.body.name){
         res.status(400).send();
     } else{
         try{
             const newArrival = new Arrival({
                 _id: new mongoose.Types.ObjectId(),
                 time: req.body.time,
-                user: req.body.user,
+                name: req.body.name,
+
             })
+            console.log(newArrival)
             await newArrival.save();
             res.status(201).json(newArrival);
         } catch (err){
@@ -37,7 +39,7 @@ module.exports.updateArrivalById = async (req,res,next) =>{
                 {_id:req.params.id},
                 {$set:{
                     time:req.body.time,
-                    user:req.body.user,
+                    name:req.body.name,
                 }}
             ).exec()
             res.status(200).send();
