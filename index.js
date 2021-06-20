@@ -1,14 +1,11 @@
-const http = require('http')
+const http = require("http");
 
-const app = require('./app');
+const app = require("./app");
 
 const port = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 
-
-
-
-server.listen(port, function() {
-    console.log('listening on 3000')
-})
+server.listen(port, function () {
+  console.log("listening on 3000");
+});
